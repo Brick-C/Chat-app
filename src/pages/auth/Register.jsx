@@ -12,7 +12,7 @@ import { createToast } from "../../utils/toast";
 const Register = () => {
   //hooks
   const dispatch = useDispatch();
-  const { message, error } = useSelector(getAuthData);
+  const { message, error, loader } = useSelector(getAuthData);
 
   //form field manage
   const { input, handleInputChange, resetForm } = useFormFields({
@@ -26,14 +26,13 @@ const Register = () => {
     e.preventDefault();
 
     dispatch(createUser(input));
-
-    resetForm();
   };
 
   useEffect(() => {
     if (message) {
       createToast(message, "success");
       dispatch(setMessageEmpty());
+      resetForm();
     }
 
     if (error) {
@@ -74,7 +73,9 @@ const Register = () => {
                   name="password"
                   onChange={handleInputChange}
                 />
-                <button>Create Account</button>
+                <button>
+                  {loader ? "Creating Account..." : "Create Account"}
+                </button>
               </form>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import Activation from "../pages/auth/Activation";
 import AuthHome from "../pages/auth/AuthHome";
 import Forgot from "../pages/auth/Forgot";
 import Login from "../pages/auth/Login";
@@ -20,6 +21,10 @@ const publicRouter = [
   {
     path: "/forgot",
     element: <Forgot />,
+  },
+  {
+    path: "/activation",
+    element: <Activation />,
   },
 ];
 
