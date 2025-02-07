@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import AuthHeader from "../../components/authHeader/AuthHeader";
@@ -13,6 +13,7 @@ const Register = () => {
   //hooks
   const dispatch = useDispatch();
   const { message, error, loader } = useSelector(getAuthData);
+  const navigate = useNavigate();
 
   //form field manage
   const { input, handleInputChange, resetForm } = useFormFields({
@@ -33,6 +34,7 @@ const Register = () => {
       createToast(message, "success");
       dispatch(setMessageEmpty());
       resetForm();
+      navigate("/activation");
     }
 
     if (error) {

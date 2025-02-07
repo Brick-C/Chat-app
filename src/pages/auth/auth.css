@@ -83,6 +83,17 @@
           }
         }
       }
+
+      #resend {
+        font-size: 0.89rem;
+        color: #31393d;
+        text-decoration: none;
+        letter-spacing: 1.6px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .bottom {
