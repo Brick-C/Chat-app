@@ -26,6 +26,10 @@ const publicRouter = [
     path: "/activation",
     element: <Activation />,
   },
+  {
+    path: "/activation/:tokenURL",
+    element: <Activation />,
+  },
 ];
 
 // export router

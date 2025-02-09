@@ -18,7 +18,7 @@ export const createUser = createAsyncThunk("auth/createUser", async (data) => {
   }
 });
 
-//register user
+//register user using OTP
 export const activateAccountByOtp = createAsyncThunk(
   "auth/activateAccountByOtp",
   async (data) => {
@@ -26,6 +26,26 @@ export const activateAccountByOtp = createAsyncThunk(
       const response = await axios.post(
         `http://localhost:5050/api/v1/auth/activation-by-otp/${data.token}`,
         { otp: data.otp },
+        {
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
+
+//register user using email
+export const activateAccountByLink = createAsyncThunk(
+  "auth/activateAccountByLink",
+  async (data) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5050/api/v1/auth/activation-by-link/${data}`,
+
         {
           withCredentials: true,
         }

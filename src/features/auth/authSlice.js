@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  activateAccountByLink,
+  activateAccountByOtp,
   createUser,
   getLoggedInUser,
   loginUser,
@@ -63,6 +65,32 @@ const authSlice = createSlice({
       })
       .addCase(getLoggedInUser.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+
+      //Activation code(OTP)
+      .addCase(activateAccountByOtp.pending, (state, action) => {
+        state.loader = true;
+      })
+      .addCase(activateAccountByOtp.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loader = false;
+      })
+      .addCase(activateAccountByOtp.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.loader = false;
+      })
+
+      //Activation code(LINK)
+      .addCase(activateAccountByLink.pending, (state, action) => {
+        state.loader = true;
+      })
+      .addCase(activateAccountByLink.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loader = false;
+      })
+      .addCase(activateAccountByLink.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.loader = false;
       });
   },
 });

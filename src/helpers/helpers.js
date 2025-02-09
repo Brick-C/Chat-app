@@ -30,7 +30,7 @@ export const randStr = (length = 12) => {
 };
 
 export const dotsToHyphens = (inputString) => {
-  const stringWithHyphens = inputString.replace(/\./g, "-");
+  const stringWithHyphens = inputString.replace(/\./g, "");
   return stringWithHyphens;
 };
 

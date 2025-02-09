@@ -41,7 +41,7 @@ const Register = () => {
       createToast(error);
       dispatch(setMessageEmpty());
     }
-  }, [message, error]);
+  }, [message, error, resetForm, dispatch, navigate]);
   return (
     <>
       <PageHeader title="Create Your Account" />

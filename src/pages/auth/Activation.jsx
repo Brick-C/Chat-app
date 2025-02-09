@@ -1,17 +1,26 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./auth.css";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import AuthHeader from "../../components/authHeader/AuthHeader";
 import Cookie from "js-cookie";
 import useFormFields from "../../hooks/useFormFields";
-import { useDispatch } from "react-redux";
-import { activateAccountByOtp } from "../../features/auth/authApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  activateAccountByLink,
+  activateAccountByOtp,
+} from "../../features/auth/authApiSlice";
+import { getAuthData, setMessageEmpty } from "../../features/auth/authSlice";
+import { createToast } from "../../utils/toast";
 
 const Activation = () => {
   const token = Cookie.get("verifyToken");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { message, error, loader } = useSelector(getAuthData);
+
+  const { tokenUrl } = useParams();
+  console.log(tokenUrl);
 
   const { input, resetForm, handleInputChange } = useFormFields({
     otp: "",
@@ -28,6 +37,26 @@ const Activation = () => {
       return navigate("/login");
     }
   }, [token, navigate]);
+
+  useEffect(() => {
+    if (tokenUrl) {
+      dispatch(activateAccountByLink(tokenUrl));
+    }
+  }, [tokenUrl, dispatch]);
+
+  useEffect(() => {
+    if (message) {
+      createToast(message, "success");
+      dispatch(setMessageEmpty());
+      resetForm();
+      navigate("/login");
+    }
+
+    if (error) {
+      createToast(error);
+      dispatch(setMessageEmpty());
+    }
+  }, [message, error, resetForm, dispatch, navigate]);
 
   return (
     <>
@@ -49,7 +78,7 @@ const Activation = () => {
                   name="otp"
                 />
 
-                <button>Activate Now</button>
+                <button>{loader ? "Activating..." : "Activate Now"}</button>
               </form>
 
               <a href="#" id="resend">
