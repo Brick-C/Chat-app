@@ -3,32 +3,38 @@ import AuthHome from "../pages/auth/AuthHome";
 import Forgot from "../pages/auth/Forgot";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import PublicGard from "./PublicGard";
 
 // create public router
 const publicRouter = [
   {
-    path: "/auth",
-    element: <AuthHome />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/forgot",
-    element: <Forgot />,
-  },
-  {
-    path: "/activation",
-    element: <Activation />,
-  },
-  {
-    path: "/activation/:tokenURL",
-    element: <Activation />,
+    element: <PublicGard />,
+    children: [
+      {
+        path: "/auth",
+        element: <AuthHome />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/forgot",
+        element: <Forgot />,
+      },
+      {
+        path: "/activation",
+        element: <Activation />,
+      },
+      {
+        path: "/activation/:tokenURL",
+        element: <Activation />,
+      },
+    ],
   },
 ];
 
