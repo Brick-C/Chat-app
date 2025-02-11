@@ -6,6 +6,7 @@ import {
   getLoggedInUser,
   loginUser,
   logoutUser,
+  resendActivation,
 } from "./authApiSlice";
 
 // create auth slice
@@ -78,6 +79,7 @@ const authSlice = createSlice({
       .addCase(activateAccountByOtp.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.loader = false;
+        state.user = action.payload;
       })
 
       //Activation code(LINK)
@@ -89,6 +91,19 @@ const authSlice = createSlice({
         state.loader = false;
       })
       .addCase(activateAccountByLink.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.loader = false;
+      })
+
+      //Resend activation
+      .addCase(resendActivation.pending, (state, action) => {
+        state.loader = true;
+      })
+      .addCase(resendActivation.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loader = false;
+      })
+      .addCase(resendActivation.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.loader = false;
       });

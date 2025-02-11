@@ -105,3 +105,29 @@ export const createOTP = (length = 5) => {
 
   return otp;
 };
+
+export const hideEmailMiddle = (email) => {
+  const emailMain = email.split("@");
+
+  const firstChar = emailMain[0].charAt(0);
+  const lastChar = emailMain[0].charAt(emailMain[0].length - 1);
+
+  const middlePart = emailMain[0].slice(1, -1).replace(/./g, "*");
+
+  const hiddenMail = firstChar + middlePart + lastChar + "@" + emailMain[1];
+
+  return hiddenMail;
+};
+
+export const hidePhoneMiddle = (email) => {
+  const emailMain = email.split("@");
+
+  const firstChar = emailMain[0].charAt(0);
+  const lastChar = emailMain[0].charAt(emailMain[0].length - 1);
+
+  const middlePart = emailMain[0].slice(1, -1).replace(/./g, "*");
+
+  const hiddenMail = firstChar + middlePart + lastChar + "@" + emailMain[1];
+
+  return hiddenMail;
+};
