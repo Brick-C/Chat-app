@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useFormFields from "../../hooks/useFormFields";
 import { getAuthData, setMessageEmpty } from "../../features/auth/authSlice";
 import { resetPassword } from "../../features/auth/authApiSlice";
+import { createToast } from "../../utils/toast";
 
 const Forgot = () => {
   //hooks
@@ -32,7 +33,7 @@ const Forgot = () => {
       createToast(message, "success");
       dispatch(setMessageEmpty());
       resetForm();
-      navigate("/activation");
+      navigate("/reset-password");
     }
 
     if (error) {
@@ -61,7 +62,7 @@ const Forgot = () => {
                   onChange={handleInputChange}
                 />
 
-                <button type="submit">Reset Password</button>
+                <button type="submit">Get Activation Code</button>
               </form>
             </div>
           </div>

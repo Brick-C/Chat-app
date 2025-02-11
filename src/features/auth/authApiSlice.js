@@ -132,7 +132,26 @@ export const resetPassword = createAsyncThunk(
     try {
       const response = await axios.post(
         `http://localhost:5050/api/v1/auth/reset-password`,
-        { data },
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);
+
+//Reset Password Action
+export const resetPasswordAction = createAsyncThunk(
+  "auth/resetPasswordAction",
+  async (data) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5050/api/v1/auth/reset-password-action/${data.token}`,
+        data.input,
         {
           withCredentials: true,
         }

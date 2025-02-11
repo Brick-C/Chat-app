@@ -1,54 +1,43 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import AuthHeader from "../../components/authHeader/AuthHeader";
-import Cookie from "js-cookie";
-import useFormFields from "../../hooks/useFormFields";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  activateAccountByLink,
-  activateAccountByOtp,
-} from "../../features/auth/authApiSlice";
+import useFormFields from "../../hooks/useFormFields";
 import { getAuthData, setMessageEmpty } from "../../features/auth/authSlice";
+import { resetPasswordAction } from "../../features/auth/authApiSlice";
 import { createToast } from "../../utils/toast";
+import Cookie from "js-cookie";
 
-const Activation = () => {
-  const token = Cookie.get("verifyToken");
-  const navigate = useNavigate();
+const Reset = () => {
+  //hooks
   const dispatch = useDispatch();
   const { message, error, loader } = useSelector(getAuthData);
+  const navigate = useNavigate();
+  const token = Cookie.get("verifyToken");
 
-  const { tokenUrl } = useParams();
-
-  const { input, resetForm, handleInputChange } = useFormFields({
+  //form field manage
+  const { input, handleInputChange, resetForm } = useFormFields({
+    newPassword: "",
+    confPassword: "",
     otp: "",
   });
 
-  const handleUserActivate = (e) => {
+  //handle reset password
+  const handleResetPassword = (e) => {
     e.preventDefault();
 
-    dispatch(activateAccountByOtp({ token: token, otp: input.otp }));
+    dispatch(resetPasswordAction(token, input));
   };
 
-  useEffect(() => {
-    if (!token) {
-      return navigate("/login");
-    }
-  }, [token, navigate]);
-
-  useEffect(() => {
-    if (tokenUrl) {
-      dispatch(activateAccountByLink(tokenUrl));
-    }
-  }, [tokenUrl, dispatch]);
-
+  //dispatch
   useEffect(() => {
     if (message) {
       createToast(message, "success");
       dispatch(setMessageEmpty());
       resetForm();
-      navigate("/login");
+      navigate("/reset-password");
     }
 
     if (error) {
@@ -59,36 +48,48 @@ const Activation = () => {
 
   return (
     <>
-      <PageHeader title="Activate account" />
+      <PageHeader title="Forgot Password" />
       <div className="auth-container">
         <div className="auth-wrapper">
           <div className="auth-top">
             <AuthHeader
-              title="Activate your account"
+              title="Reset Your Password"
               desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
             />
             <div className="auth-form">
-              <form onSubmit={handleUserActivate}>
+              <form onSubmit={handleResetPassword}>
                 <input
                   type="text"
-                  placeholder="Activation code"
-                  value={input.otp}
+                  placeholder="New Password"
+                  value={input.newPassword}
+                  name="newPassword"
                   onChange={handleInputChange}
-                  name="otp"
                 />
 
-                <button>{loader ? "Activating..." : "Activate Now"}</button>
-              </form>
+                <input
+                  type="text"
+                  placeholder="Confirm Password"
+                  value={input.confPassword}
+                  name="confPassword"
+                  onChange={handleInputChange}
+                />
 
-              <a href="#" id="resend">
-                Resend Activation code to ta*******0@gmail.com
-              </a>
+                <input
+                  type="text"
+                  placeholder="Activation Code"
+                  value={input.otp}
+                  name="otp"
+                  onChange={handleInputChange}
+                />
+
+                <button type="submit">Reset Password</button>
+              </form>
             </div>
           </div>
 
           <div className="bottom">
             <Link to="/login" className="email">
-              Login
+              Login Now
             </Link>
           </div>
         </div>
@@ -97,4 +98,4 @@ const Activation = () => {
   );
 };
 
-export default Activation;
+export default Reset;
