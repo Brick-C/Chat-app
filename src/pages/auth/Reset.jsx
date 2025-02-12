@@ -28,7 +28,7 @@ const Reset = () => {
   const handleResetPassword = (e) => {
     e.preventDefault();
 
-    dispatch(resetPasswordAction(token, input));
+    dispatch(resetPasswordAction({ token, input }));
   };
 
   //dispatch
@@ -37,7 +37,7 @@ const Reset = () => {
       createToast(message, "success");
       dispatch(setMessageEmpty());
       resetForm();
-      navigate("/reset-password");
+      navigate("/login");
     }
 
     if (error) {
@@ -82,7 +82,9 @@ const Reset = () => {
                   onChange={handleInputChange}
                 />
 
-                <button type="submit">Reset Password</button>
+                <button type="submit">
+                  {loader ? "Reseting Password..." : "Reset Password"}
+                </button>
               </form>
             </div>
           </div>

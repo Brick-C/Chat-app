@@ -8,6 +8,7 @@ import {
   logoutUser,
   resendActivation,
   resetPassword,
+  resetPasswordAction,
 } from "./authApiSlice";
 
 // create auth slice
@@ -109,7 +110,7 @@ const authSlice = createSlice({
         state.loader = false;
       })
 
-      //Resent Password
+      //Reset Password
       .addCase(resetPassword.pending, (state, action) => {
         state.loader = true;
       })
@@ -118,6 +119,19 @@ const authSlice = createSlice({
         state.loader = false;
       })
       .addCase(resetPassword.fulfilled, (state, action) => {
+        state.message = action.payload.message;
+        state.loader = false;
+      })
+
+      //Reset Password Action
+      .addCase(resetPasswordAction.pending, (state, action) => {
+        state.loader = true;
+      })
+      .addCase(resetPasswordAction.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loader = false;
+      })
+      .addCase(resetPasswordAction.fulfilled, (state, action) => {
         state.message = action.payload.message;
         state.loader = false;
       });

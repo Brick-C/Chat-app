@@ -62,7 +62,9 @@ const Forgot = () => {
                   onChange={handleInputChange}
                 />
 
-                <button type="submit">Get Activation Code</button>
+                <button type="submit">
+                  {loader ? "Getting Code..." : "Get Activation Code"}
+                </button>
               </form>
             </div>
           </div>
