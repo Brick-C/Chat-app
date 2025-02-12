@@ -2,6 +2,7 @@ import React from "react";
 import TopBar from "../../components/topBar/TopBar";
 import useAuthUser from "../../hooks/useAuthUser";
 import ActivateLogin from "../../components/activate/ActivateLogin";
+import MessengerHome from "../../components/messengerHome/MessengerHome";
 
 const Messenger = () => {
   const { user } = useAuthUser();
@@ -9,7 +10,7 @@ const Messenger = () => {
   return (
     <>
       <TopBar />
-      {user.accessToken ? <ActivateLogin /> : <h1>Main Content</h1>}
+      {user.accessToken ? <ActivateLogin /> : <MessengerHome />}
     </>
   );
 };

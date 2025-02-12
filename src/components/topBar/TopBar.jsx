@@ -14,11 +14,13 @@ import useAuthUser from "../../hooks/useAuthUser";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/auth/authApiSlice";
 import ActivateLogin from "../activate/ActivateLogin";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const TopBar = () => {
   const { isOpen, toggleMenu, dropDownRef } = useDropdownPopupControl();
   const { user } = useAuthUser();
   const dispatch = useDispatch();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const handleUserLogout = () => {
     dispatch(logoutUser());
@@ -84,7 +86,7 @@ const TopBar = () => {
                   </li>
 
                   <li>
-                    <Link>
+                    <Link onClick={toggleDarkMode}>
                       <MdOutlineDarkMode />
                       Dark Mode
                     </Link>
