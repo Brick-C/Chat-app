@@ -3,6 +3,9 @@ import "./messengerHome.css";
 import { IoSearch } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { MdOutlineEdit } from "react-icons/md";
+import { IoCallOutline } from "react-icons/io5";
+import { GoVideo } from "react-icons/go";
+import { FaExclamation } from "react-icons/fa6";
 
 const MessengerHome = () => {
   return (
@@ -118,7 +121,31 @@ const MessengerHome = () => {
             </div>
           </div>
         </div>
-        <div className="chat-body">Body</div>
+        <div className="chat-body">
+          <div className="chat-body-active-user">
+            <div className="chat-active-user-details">
+              <img
+                src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
+                alt=""
+              />
+              <span id="chat-name">Tamjid Hossain</span>
+            </div>
+
+            <div className="chat-active-user-menu">
+              <button>
+                <IoCallOutline id="icon" />
+              </button>
+
+              <button>
+                <GoVideo id="icon" />
+              </button>
+
+              <button>
+                <FaExclamation id="icon" />
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="chat-profile">Profile</div>
       </div>
     </>
