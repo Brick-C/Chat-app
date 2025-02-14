@@ -145,6 +145,17 @@ const MessengerHome = () => {
               </button>
             </div>
           </div>
+
+          <div className="chat-body-msg">
+            <div className="chat-msg-profile">
+              <img
+                src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
+                alt=""
+              />
+              <span id="chat-name">Tamjid Hossain</span>
+            </div>
+            <div className="chat-msg-list"></div>
+          </div>
         </div>
         <div className="chat-profile">Profile</div>
       </div>

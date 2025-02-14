@@ -136,16 +136,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 9px;
+      padding: 4px 14px;
+      -webkit-box-shadow: 0px 6px 15px -2px rgba(231, 228, 228, 0.34);
+      -moz-box-shadow: 0px 6px 15px -2px rgba(235, 233, 233, 0.34);
+      box-shadow: 0px 6px 15px -2px rgba(223, 222, 222, 0.3);
       .chat-active-user-details {
         display: flex;
         align-items: center;
         gap: 9px;
+
         img {
           width: 47px;
           height: 46px;
           object-fit: cover;
           border-radius: 50%;
+        }
+
+        #chat-name {
+          font-family: "Zain";
+          font-weight: 600;
+          font-size: 20px;
         }
       }
 
@@ -157,15 +167,35 @@
           cursor: pointer;
           font-size: 20px;
           background-color: transparent;
-          padding: 4px 7px;
         }
 
         #icon {
-          color: rgb(25, 51, 143);
           transition: 0.2s all ease-in;
+
           &:hover {
-            background-color: rgb(214, 220, 218);
+            color: rgb(39, 78, 156);
+            transform: scale(1.1);
           }
+        }
+      }
+    }
+
+    .chat-body-msg {
+      .chat-msg-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1.5%;
+        img {
+          width: 52px;
+          height: 55px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+
+        #chat-name {
+          font-family: "Zain";
+          font-size: 19px;
         }
       }
     }
