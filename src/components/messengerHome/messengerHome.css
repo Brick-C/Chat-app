@@ -181,8 +181,6 @@
     }
 
     .chat-body-msg {
-      overflow-y: scroll;
-      height: 100vh;
       .chat-msg-profile {
         display: flex;
         flex-direction: column;
@@ -205,6 +203,8 @@
         display: flex;
         flex-direction: column;
         padding: 0 11px;
+        overflow: auto;
+        height: 68vh;
 
         .my-msg {
           display: flex;
@@ -216,9 +216,9 @@
             background-color: antiquewhite;
             padding: 4px 7px;
             font-family: "Zain";
-            font-size: 19.5px;
+            font-size: 19.1px;
             border-radius: 5px;
-            max-width: 30%;
+            max-width: 32%;
           }
 
           .msg-photo {
@@ -236,6 +236,28 @@
         .msg-time {
           display: flex;
           justify-content: center;
+        }
+
+        .friend-msg {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          img {
+            width: 31px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            align-self: flex-end;
+          }
+
+          .msg-text {
+            background-color: rgb(245, 243, 242);
+            padding: 4px 7px;
+            font-family: "Zain";
+            font-size: 19.1px;
+            border-radius: 5px;
+            max-width: 32%;
+          }
         }
       }
     }

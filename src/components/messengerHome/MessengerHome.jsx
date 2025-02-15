@@ -182,6 +182,34 @@ const MessengerHome = () => {
                 </div>
                 <div className="msg-photo"></div>
               </div>
+
+              <div className="my-msg">
+                <div className="msg-text">
+                  Hello! How are You? Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Blanditiis rem perferendis nostrum dolorem
+                  modi sint mollitia at natus possimus dolores!
+                </div>
+                <div className="msg-photo">
+                  <img
+                    src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div className="msg-time">
+                <span>9:30 PM</span>
+              </div>
+              <div className="friend-msg">
+                <img
+                  src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
+                  alt=""
+                />
+                <div className="msg-text">
+                  I am fine. Thank you. Lorem ipsum dolor sit, amet consectetur
+                  adipisicing elit. Illum, nobis.
+                </div>
+                <div className="msg-photo"></div>
+              </div>
             </div>
           </div>
         </div>
