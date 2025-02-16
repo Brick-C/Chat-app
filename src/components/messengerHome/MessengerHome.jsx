@@ -212,6 +212,13 @@ const MessengerHome = () => {
               </div>
             </div>
           </div>
+
+          <div className="chat-body-form">
+            <div className="chat-body-icons"></div>
+            <div className="chat-body-inputs">
+              <input type="text" />
+            </div>
+          </div>
         </div>
         <div className="chat-profile">Profile</div>
       </div>
