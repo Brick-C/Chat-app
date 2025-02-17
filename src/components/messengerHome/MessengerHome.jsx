@@ -6,6 +6,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { GoVideo } from "react-icons/go";
 import { FaExclamation } from "react-icons/fa6";
+import { LuImagePlus } from "react-icons/lu";
+import { LuCirclePlus } from "react-icons/lu";
 
 const MessengerHome = () => {
   return (
@@ -214,10 +216,22 @@ const MessengerHome = () => {
           </div>
 
           <div className="chat-body-form">
-            <div className="chat-body-icons"></div>
+            <div className="chat-body-icons">
+              <ul>
+                <li>
+                  <LuImagePlus />
+                </li>
+
+                <li>
+                  <LuCirclePlus />
+                </li>
+              </ul>
+            </div>
             <div className="chat-body-inputs">
               <input type="text" />
+              😀
             </div>
+            <div className="chat-body-emoji">👍</div>
           </div>
         </div>
         <div className="chat-profile">Profile</div>
