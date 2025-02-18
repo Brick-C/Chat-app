@@ -261,6 +261,60 @@
         }
       }
     }
+
+    .chat-body-form {
+      display: flex;
+      border: 1px solid rgb(240, 237, 237);
+      padding: 7px 7px;
+      gap: 19px;
+      .chat-body-icons {
+        ul {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          font-size: 20px;
+
+          li {
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+
+      .chat-body-inputs {
+        display: flex;
+        width: 83%;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+
+        input {
+          width: 100%;
+          border: none;
+          background-color: rgba(215, 215, 216, 0.611);
+          border-radius: 5px;
+          padding: 2px 0px;
+          font-family: "Zain";
+        }
+
+        .chat-emoji-picker {
+          position: absolute;
+          bottom: 50px;
+          right: 400px;
+        }
+      }
+
+      .chat-body-emoji {
+        cursor: pointer;
+        margin-left: -4px;
+        &:hover {
+          transform: scale(1.3);
+        }
+      }
+    }
   }
   .chat-profile {
     flex: 1;

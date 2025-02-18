@@ -8,6 +8,7 @@ import { GoVideo } from "react-icons/go";
 import { FaExclamation } from "react-icons/fa6";
 import { LuImagePlus } from "react-icons/lu";
 import { LuCirclePlus } from "react-icons/lu";
+import EmojiPicker from "emoji-picker-react";
 
 const MessengerHome = () => {
   return (
@@ -229,6 +230,9 @@ const MessengerHome = () => {
             </div>
             <div className="chat-body-inputs">
               <input type="text" />
+              <div className="chat-emoji-picker">
+                <EmojiPicker />
+              </div>
               😀
             </div>
             <div className="chat-body-emoji">👍</div>
