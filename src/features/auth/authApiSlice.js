@@ -162,3 +162,22 @@ export const resetPasswordAction = createAsyncThunk(
     }
   }
 );
+
+//Upload User photo
+export const uploadUserPhoto = createAsyncThunk(
+  "auth/uploadUserPhoto",
+  async (data) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5050/api/v1/auth/photo-edit/${data.id}`,
+        data.data,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.message);
+    }
+  }
+);

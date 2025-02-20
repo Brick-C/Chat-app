@@ -78,7 +78,7 @@ const TopBar = () => {
                   border: "1px solid black",
                   objectFit: "cover",
                 }}
-                src={null}
+                src={user.photo}
                 name={user.name}
               />
             </button>

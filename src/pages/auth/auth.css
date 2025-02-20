@@ -20,8 +20,8 @@
 
       .profile-photo-wrap {
         .chakra-avatar {
-          width: 100px;
-          height: 100px;
+          width: 120px;
+          height: 120px;
           border-radius: 50%;
           object-fit: cover;
           background-color: rgb(194, 192, 192);
@@ -29,6 +29,32 @@
           .chakra-avatar__initials {
             background-color: rgb(194, 192, 192);
             font-size: 45px;
+          }
+        }
+
+        .profile-photo-upload {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 180px;
+          height: 80px;
+          cursor: pointer;
+          margin-top: 1%;
+          p {
+            font-size: 19px;
+            letter-spacing: 1px;
+
+            span {
+              font-size: 26px;
+            }
+
+            &:hover {
+              text-decoration-line: underline;
+            }
+          }
+          input {
+            display: none;
           }
         }
       }
