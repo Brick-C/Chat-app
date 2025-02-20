@@ -5,11 +5,16 @@ import { MdOutlineEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { createToast } from "../../utils/toast";
 import { setMessageEmpty } from "../../features/user/userSlice";
+import { getAllUser } from "../../features/user/userApiSlice";
+import { Avatar, AvatarGroup } from "@chakra-ui/avatar";
 
 const Users = () => {
   const dispatch = useDispatch();
   const { users, error, message } = useSelector((state) => state.user);
 
+  useEffect(() => {
+    dispatch(getAllUser());
+  }, [dispatch]);
   useEffect(() => {
     if (message) {
       createToast(message, "success");
@@ -42,7 +47,22 @@ const Users = () => {
         </div>
       </div>
       <div className="chat-users-list">
-        <div className="user-item">
+        {users?.map((item, index) => {
+          return (
+            <div className="user-item" key={index}>
+              <Avatar src="null" name={item.name} />
+
+              <div className="user-details">
+                <span className="user-name">{item.name}</span>
+                <span className="user-chat-info">
+                  <span className="text">Call me</span>
+                  <span className="time">3h</span>
+                </span>
+              </div>
+            </div>
+          );
+        })}
+        {/* <div className="user-item active">
           <img
             src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
             alt=""
@@ -55,82 +75,7 @@ const Users = () => {
               <span className="time">3h</span>
             </span>
           </div>
-        </div>
-
-        <div className="user-item">
-          <img
-            src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-            alt=""
-          />
-
-          <div className="user-details">
-            <span className="user-name">Tamjid Hossain</span>
-            <span className="user-chat-info">
-              <span className="text">Call me</span>
-              <span className="time">3h</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="user-item active">
-          <img
-            src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-            alt=""
-          />
-
-          <div className="user-details">
-            <span className="user-name">Tamjid Hossain</span>
-            <span className="user-chat-info">
-              <span className="text">Call me</span>
-              <span className="time">3h</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="user-item">
-          <img
-            src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-            alt=""
-          />
-
-          <div className="user-details">
-            <span className="user-name">Tamjid Hossain</span>
-            <span className="user-chat-info">
-              <span className="text">Call me</span>
-              <span className="time">3h</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="user-item">
-          <img
-            src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-            alt=""
-          />
-
-          <div className="user-details">
-            <span className="user-name">Tamjid Hossain</span>
-            <span className="user-chat-info">
-              <span className="text">Call me</span>
-              <span className="time">3h</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="user-item">
-          <img
-            src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-            alt=""
-          />
-
-          <div className="user-details">
-            <span className="user-name">Tamjid Hossain</span>
-            <span className="user-chat-info">
-              <span className="text">Call me</span>
-              <span className="time">3h</span>
-            </span>
-          </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

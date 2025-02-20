@@ -101,6 +101,18 @@
           object-fit: cover;
         }
 
+        .chakra-avatar {
+          width: 48px;
+          height: 49px;
+          border-radius: 50%;
+          object-fit: cover;
+          background-color: rgb(194, 192, 192);
+
+          .chakra-avatar__initials {
+            background-color: rgb(194, 192, 192);
+          }
+        }
+
         .user-details {
           display: flex;
           flex-direction: column;

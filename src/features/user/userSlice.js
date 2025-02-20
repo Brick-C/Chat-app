@@ -70,7 +70,7 @@ const userSlice = createSlice({
       // })
 
       .addCase(getAllUser.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.users = action.payload.users;
       });
     // .addCase(userCreate.rejected, (state, action) => {
     //   state.error = action.error.message;
