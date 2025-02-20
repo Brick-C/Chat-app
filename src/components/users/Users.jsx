@@ -50,7 +50,7 @@ const Users = () => {
         {users?.map((item, index) => {
           return (
             <div className="user-item" key={index}>
-              <Avatar src="null" name={item.name} />
+              <Avatar src={null} name={item.name} />
 
               <div className="user-details">
                 <span className="user-name">{item.name}</span>

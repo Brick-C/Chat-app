@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/auth/authApiSlice";
 import ActivateLogin from "../activate/ActivateLogin";
 import useDarkMode from "../../hooks/useDarkMode";
+import { Avatar } from "@chakra-ui/avatar";
 
 const TopBar = () => {
   const { isOpen, toggleMenu, dropDownRef } = useDropdownPopupControl();
@@ -69,9 +70,16 @@ const TopBar = () => {
           </div>
           <div className="topbar-user">
             <button onClick={toggleMenu}>
-              <img
-                src="https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-                alt=""
+              <Avatar
+                style={{
+                  width: "41px",
+                  height: "42px",
+                  borderRadius: "50%",
+                  border: "1px solid black",
+                  objectFit: "cover",
+                }}
+                src={null}
+                name={user.name}
               />
             </button>
 
@@ -79,7 +87,7 @@ const TopBar = () => {
               <div className="dropdown-menu">
                 <ul>
                   <li>
-                    <Link>
+                    <Link to="/profile-edit">
                       <FaRegUserCircle />
                       Edit Profile
                     </Link>
