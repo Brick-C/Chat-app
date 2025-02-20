@@ -13,7 +13,6 @@ import useDropdownPopupControl from "../../hooks/useDropdownPopupControl";
 import useAuthUser from "../../hooks/useAuthUser";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../features/auth/authApiSlice";
-import ActivateLogin from "../activate/ActivateLogin";
 import useDarkMode from "../../hooks/useDarkMode";
 import { Avatar } from "@chakra-ui/avatar";
 
@@ -33,14 +32,10 @@ const TopBar = () => {
         <div className="topbar-container">
           <div className="topbar-search">
             <Link to="/">
-              {user.photo ? (
-                <img>{user.photo}</img>
-              ) : (
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/6072/6072846.png"
-                  alt=""
-                />
-              )}
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/6072/6072846.png"
+                alt=""
+              />
             </Link>
             <div className="search">
               <input type="text" placeholder="Search Chats" />
