@@ -139,6 +139,76 @@
         }
       }
     }
+
+    .chat-users-list {
+      display: flex;
+      flex-direction: column;
+      padding: 9px 0px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 90vh;
+
+      .active {
+        transform: scale(1.04);
+        border: 1px dotted rgb(217, 216, 216);
+      }
+      .user-item {
+        display: flex;
+        gap: 10px;
+        padding: 19px 0px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.17s ease-in;
+        margin-left: 1.3%;
+        &:hover {
+          transform: scale(1.03);
+        }
+
+        img {
+          width: 48px;
+          height: 49px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .chakra-avatar {
+          width: 48px;
+          height: 49px;
+          border-radius: 50%;
+          object-fit: cover;
+          background-color: rgb(194, 192, 192);
+
+          .chakra-avatar__initials {
+            background-color: rgb(194, 192, 192);
+          }
+        }
+
+        .user-details {
+          display: flex;
+          flex-direction: column;
+
+          .user-name {
+            font-weight: 600;
+            font-family: "Zain";
+            font-size: 20px;
+            margin-bottom: -2.6px;
+          }
+
+          .user-chat-info {
+            display: flex;
+            gap: 14px;
+            justify-content: space-between;
+
+            .text {
+              font-family: "Zain";
+            }
+            .time {
+              font-family: "Zain";
+            }
+          }
+        }
+      }
+    }
   }
   .chat-body {
     flex: 2.1;
