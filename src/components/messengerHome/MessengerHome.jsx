@@ -26,11 +26,8 @@ const MessengerHome = () => {
             <>
               <div className="chat-body-active-user">
                 <div className="chat-active-user-details">
-                  <img
-                    src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                    alt=""
-                  />
-                  <span id="chat-name">Tamjid Hossain</span>
+                  <img src={activeChat.photo} alt="" />
+                  <span id="chat-name">{activeChat.name}</span>
                 </div>
 
                 <div className="chat-active-user-menu">
@@ -50,11 +47,8 @@ const MessengerHome = () => {
 
               <div className="chat-body-msg">
                 <div className="chat-msg-profile">
-                  <img
-                    src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                    alt=""
-                  />
-                  <span id="chat-name">Tamjid Hossain</span>
+                  <img src={activeChat.photo} alt="" />
+                  <span id="chat-name">{activeChat.name}</span>
                 </div>
                 <div className="chat-msg-list">
                   <div className="my-msg">
@@ -146,56 +140,59 @@ const MessengerHome = () => {
           )}
         </div>
         <div className="chat-profile">
-          <div className="profile-info">
-            <img
-              src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-              alt=""
-            />
-            <span id="chat-name">Tamjid Hossain</span>
+          {activeChat ? (
+            <>
+              <div className="profile-info">
+                <img src={activeChat.photo} alt="" />
+                <span id="chat-name">{activeChat.name}</span>
 
-            <ul>
-              <li>
-                <button>
-                  <CgProfile id="profile-side" />
-                </button>
-              </li>
+                <ul>
+                  <li>
+                    <button>
+                      <CgProfile id="profile-side" />
+                    </button>
+                  </li>
 
-              <li>
-                <button>
-                  <GoBell id="profile-side" />
-                </button>
-              </li>
+                  <li>
+                    <button>
+                      <GoBell id="profile-side" />
+                    </button>
+                  </li>
 
-              <li>
-                <button>
-                  <IoMdSearch id="profile-side" />
-                </button>
-              </li>
-            </ul>
+                  <li>
+                    <button>
+                      <IoMdSearch id="profile-side" />
+                    </button>
+                  </li>
+                </ul>
 
-            <div className="profile-options">
-              <Collapsible trigger="Chat info">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Assumenda, maiores.
-                </p>
-              </Collapsible>
+                <div className="profile-options">
+                  <Collapsible trigger="Chat info">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Assumenda, maiores.
+                    </p>
+                  </Collapsible>
 
-              <Collapsible trigger="Customize chat">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Assumenda, maiores.
-                </p>
-              </Collapsible>
+                  <Collapsible trigger="Customize chat">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Assumenda, maiores.
+                    </p>
+                  </Collapsible>
 
-              <Collapsible trigger="Media, files and links">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Assumenda, maiores.
-                </p>
-              </Collapsible>
-            </div>
-          </div>
+                  <Collapsible trigger="Media, files and links">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Assumenda, maiores.
+                    </p>
+                  </Collapsible>
+                </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
