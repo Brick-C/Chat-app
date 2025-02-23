@@ -16,6 +16,13 @@ import Users from "../users/Users";
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
   const [activeChat, setActiveChat] = useState(null);
+  const [chat, setChat] = useState("");
+
+  const handleMessageSend = (e) => {
+    if (e.key === "Enter") {
+      console.log(activeChat._id);
+    }
+  };
 
   return (
     <>
@@ -122,7 +129,12 @@ const MessengerHome = () => {
                   </ul>
                 </div>
                 <div className="chat-body-inputs">
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={(e) => setChat(e.target.value)}
+                    value={chat}
+                    onKeyDown={handleMessageSend}
+                  />
                   {isOpenEmoji && (
                     <div className="chat-emoji-picker">
                       <EmojiPicker />
