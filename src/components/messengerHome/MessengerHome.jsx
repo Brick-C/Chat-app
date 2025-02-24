@@ -29,6 +29,7 @@ const MessengerHome = () => {
           receiverId: activeChat._id,
         })
       );
+      setChat("");
     }
   };
 
