@@ -12,15 +12,23 @@ import { GoBell } from "react-icons/go";
 import { IoMdSearch } from "react-icons/io";
 import Collapsible from "react-collapsible";
 import Users from "../users/Users";
+import { useDispatch } from "react-redux";
+import { createChat } from "../../features/chat/chatApiSlice";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
   const [activeChat, setActiveChat] = useState(null);
   const [chat, setChat] = useState("");
+  const dispatch = useDispatch();
 
   const handleMessageSend = (e) => {
     if (e.key === "Enter") {
-      console.log(activeChat._id);
+      dispatch(
+        createChat({
+          chat: chat,
+          receiverId: activeChat._id,
+        })
+      );
     }
   };
 
