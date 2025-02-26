@@ -20,7 +20,7 @@ import {
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
-  const [activeChat, setActiveChat] = useState(null);
+  const [activeChat, setActiveChat] = useState(false);
   const [chat, setChat] = useState("");
   const dispatch = useDispatch();
 
