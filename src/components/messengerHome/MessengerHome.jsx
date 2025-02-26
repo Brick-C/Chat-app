@@ -27,8 +27,16 @@ const MessengerHome = () => {
         createChat({
           chat: chat,
           receiverId: activeChat._id,
+          status: "sent",
         })
-      );
+      )
+        .then((result) => {
+          console.log("Chat message sent successfully:", result); // Handle success if needed
+        })
+        .catch((error) => {
+          console.error("Error sending chat message from frontend:", error); // Log frontend error
+          // Optionally display an error message to the user using your createToast or similar
+        });
       setChat("");
     }
   };
