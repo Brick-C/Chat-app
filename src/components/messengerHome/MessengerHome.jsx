@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./messengerHome.css";
 import { IoCallOutline } from "react-icons/io5";
 import { GoVideo } from "react-icons/go";
@@ -13,7 +13,10 @@ import { IoMdSearch } from "react-icons/io";
 import Collapsible from "react-collapsible";
 import Users from "../users/Users";
 import { useDispatch } from "react-redux";
-import { createChat } from "../../features/chat/chatApiSlice";
+import {
+  createChat,
+  getUserToUserChat,
+} from "../../features/chat/chatApiSlice";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
@@ -27,19 +30,21 @@ const MessengerHome = () => {
         createChat({
           chat: chat,
           receiverId: activeChat._id,
-          status: "sent",
         })
       )
         .then((result) => {
-          console.log("Chat message sent successfully:", result); // Handle success if needed
+          console.log("Chat message sent successfully:", result);
         })
         .catch((error) => {
-          console.error("Error sending chat message from frontend:", error); // Log frontend error
-          // Optionally display an error message to the user using your createToast or similar
+          console.error("Error sending chat message from frontend:", error);
         });
       setChat("");
     }
   };
+
+  useEffect(() => {
+    dispatch(getUserToUserChat(activeChat._id));
+  }, [activeChat, dispatch]);
 
   return (
     <>
