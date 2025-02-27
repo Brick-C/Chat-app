@@ -263,11 +263,14 @@
     }
 
     .chat-body-msg {
+      overflow: auto;
+
+      margin-top: auto;
       .chat-msg-profile {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 1.5%;
+        margin-top: 4.4%;
         img {
           width: 52px;
           height: 55px;
@@ -285,8 +288,8 @@
         display: flex;
         flex-direction: column;
         padding: 0 11px;
-        overflow: auto;
-        height: 68vh;
+
+        height: 76vh;
 
         .my-msg {
           display: flex;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./messengerHome.css";
 import { IoCallOutline } from "react-icons/io5";
 import { GoVideo } from "react-icons/go";
@@ -25,7 +25,7 @@ const MessengerHome = () => {
   const [chat, setChat] = useState("");
   const { chats } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
-
+  const scrollChat = useRef();
   const { user } = useAuthUser();
 
   const handleMessageSend = (e) => {
@@ -45,6 +45,10 @@ const MessengerHome = () => {
       setChat("");
     }
   };
+
+  useEffect(() => {
+    scrollChat.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats]);
 
   useEffect(() => {
     if (activeChat && activeChat._id) {
@@ -99,7 +103,7 @@ const MessengerHome = () => {
                               <React.Fragment
                                 key={item._id || `chat-item-${index}`}
                               >
-                                <div className="my-msg">
+                                <div className="my-msg" ref={scrollChat}>
                                   <div className="msg-text">
                                     {item.message.text}
                                   </div>
