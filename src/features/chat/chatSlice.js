@@ -22,7 +22,7 @@ const chatSlice = createSlice({
       })
       .addCase(createChat.fulfilled, (state, action) => {
         console.log("createChat.fulfilled action payload:", action.payload);
-        state.chats.push(action.payload);
+        state.chats = [...state.chats, action.payload.chat];
       });
   },
 });

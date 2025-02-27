@@ -96,17 +96,21 @@ const MessengerHome = () => {
                         return (
                           <>
                             {item.senderId === user._id ? (
-                              <div key={index} className="my-msg">
-                                <div className="msg-text">
-                                  {item.message.text}
-                                </div>
-                                {/* <div className="msg-photo">
+                              <React.Fragment
+                                key={item._id || `chat-item-${index}`}
+                              >
+                                <div className="my-msg">
+                                  <div className="msg-text">
+                                    {item.message.text}
+                                  </div>
+                                  {/* <div className="msg-photo">
                                   <img
                                     src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
                                     alt=""
                                   />
                                 </div> */}
-                              </div>
+                                </div>
+                              </React.Fragment>
                             ) : (
                               <div className="friend-msg">
                                 <img src={activeChat.photo} alt="" />
