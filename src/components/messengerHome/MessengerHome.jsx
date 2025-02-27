@@ -12,24 +12,28 @@ import { GoBell } from "react-icons/go";
 import { IoMdSearch } from "react-icons/io";
 import Collapsible from "react-collapsible";
 import Users from "../users/Users";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createChat,
   getUserToUserChat,
 } from "../../features/chat/chatApiSlice";
+import useAuthUser from "../../hooks/useAuthUser";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
   const [activeChat, setActiveChat] = useState(false);
   const [chat, setChat] = useState("");
+  const { chats } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
+
+  const { user } = useAuthUser();
 
   const handleMessageSend = (e) => {
     if (e.key === "Enter") {
       dispatch(
         createChat({
           chat: chat,
-          receiverId: activeChat._id,
+          receiverId: activeChat?._id,
         })
       )
         .then((result) => {
@@ -43,7 +47,14 @@ const MessengerHome = () => {
   };
 
   useEffect(() => {
-    dispatch(getUserToUserChat(activeChat._id));
+    if (activeChat && activeChat._id) {
+      console.log("Fetching chats for user:", activeChat._id);
+      dispatch(getUserToUserChat(activeChat._id));
+    } else {
+      console.log(
+        "No active chat selected, or invalid activeChat, not fetching chats."
+      );
+    }
   }, [activeChat, dispatch]);
 
   return (
@@ -80,61 +91,39 @@ const MessengerHome = () => {
                   <span id="chat-name">{activeChat.name}</span>
                 </div>
                 <div className="chat-msg-list">
-                  <div className="my-msg">
-                    <div className="msg-text">
-                      Hello! How are You? Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Blanditiis rem perferendis nostrum
-                      dolorem modi sint mollitia at natus possimus dolores!
-                    </div>
-                    <div className="msg-photo">
-                      <img
-                        src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div className="msg-time">
-                    <span>9:30 PM</span>
-                  </div>
-                  <div className="friend-msg">
-                    <img
-                      src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                      alt=""
-                    />
-                    <div className="msg-text">
-                      I am fine. Thank you. Lorem ipsum dolor sit, amet
-                      consectetur adipisicing elit. Illum, nobis.
-                    </div>
-                    <div className="msg-photo"></div>
-                  </div>
+                  {chats && chats.length > 0
+                    ? chats.map((item, index) => {
+                        return (
+                          <>
+                            {item.senderId === user._id ? (
+                              <div key={index} className="my-msg">
+                                <div className="msg-text">
+                                  {item.message.text}
+                                </div>
+                                {/* <div className="msg-photo">
+                                  <img
+                                    src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
+                                    alt=""
+                                  />
+                                </div> */}
+                              </div>
+                            ) : (
+                              <div className="friend-msg">
+                                <img src={activeChat.photo} alt="" />
+                                <div className="msg-text">
+                                  {item.message.text}
+                                </div>
+                                <div className="msg-photo"></div>
+                              </div>
+                            )}
 
-                  <div className="my-msg">
-                    <div className="msg-text">
-                      Hello! How are You? Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Blanditiis rem perferendis nostrum
-                      dolorem modi sint mollitia at natus possimus dolores!
-                    </div>
-                    <div className="msg-photo">
-                      <img
-                        src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div className="msg-time">
-                    <span>9:30 PM</span>
-                  </div>
-                  <div className="friend-msg">
-                    <img
-                      src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                      alt=""
-                    />
-                    <div className="msg-text">
-                      I am fine. Thank you. Lorem ipsum dolor sit, amet
-                      consectetur adipisicing elit. Illum, nobis.
-                    </div>
-                    <div className="msg-photo"></div>
-                  </div>
+                            <div className="msg-time">
+                              <span>9:30 PM</span>
+                            </div>
+                          </>
+                        );
+                      })
+                    : ""}
                 </div>
               </div>
 
