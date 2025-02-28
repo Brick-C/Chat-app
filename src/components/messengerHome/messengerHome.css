@@ -5,7 +5,7 @@
   justify-content: center;
   overflow: hidden;
   .chat-users {
-    flex: 0.83;
+    flex: 0.8;
     border-right: 1px solid rgb(229, 229, 229);
     padding: 11px;
     .chat-users-header {
@@ -345,12 +345,17 @@
           display: flex;
           gap: 10px;
           align-items: center;
-          img {
-            width: 31px;
-            height: 32px;
-            object-fit: cover;
-            border-radius: 50%;
-            align-self: flex-end;
+
+          .friend-icon {
+            display: flex;
+            align-items: flex-start;
+            img {
+              width: 31px;
+              height: 32px;
+              object-fit: cover;
+              border-radius: 50%;
+              align-self: flex-end;
+            }
           }
 
           .msg-text {
@@ -360,6 +365,17 @@
             font-size: 19.1px;
             border-radius: 5px;
             max-width: 32%;
+          }
+
+          .msg-photo {
+            display: flex;
+            justify-content: flex-end;
+
+            img {
+              width: 200px;
+              object-fit: cover;
+              border-radius: 11px;
+            }
           }
         }
       }
@@ -428,7 +444,7 @@
     }
   }
   .chat-profile {
-    flex: 1;
+    flex: 0.96;
 
     .profile-info {
       display: flex;

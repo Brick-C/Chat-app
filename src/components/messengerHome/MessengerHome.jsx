@@ -46,6 +46,7 @@ const MessengerHome = () => {
           console.error("Error sending chat message from frontend:", error);
         });
       setChat("");
+      setChatImage(null);
     }
   };
 
@@ -120,21 +121,22 @@ const MessengerHome = () => {
                                   <div className="msg-text">
                                     {item.message.text}
                                   </div>
-                                  {/* <div className="msg-photo">
-                                  <img
-                                    src="https://images.stockcake.com/public/5/b/c/5bc82822-fc5a-498e-9839-256649c60954_medium/handsome-man-portrait-stockcake.jpg"
-                                    alt=""
-                                  />
-                                </div> */}
+                                  <div className="msg-photo">
+                                    <img src={item.message.photo} alt="" />
+                                  </div>
                                 </div>
                               </React.Fragment>
                             ) : (
                               <div className="friend-msg">
-                                <img src={activeChat.photo} alt="" />
+                                <div className="friend-icon">
+                                  <img src={activeChat.photo} alt="" />
+                                </div>
                                 <div className="msg-text">
                                   {item.message.text}
                                 </div>
-                                <div className="msg-photo"></div>
+                                <div className="msg-photo">
+                                  <img src={item.message.photo} alt="" />
+                                </div>
                               </div>
                             )}
 
