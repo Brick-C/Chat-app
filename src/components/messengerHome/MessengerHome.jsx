@@ -18,11 +18,13 @@ import {
   getUserToUserChat,
 } from "../../features/chat/chatApiSlice";
 import useAuthUser from "../../hooks/useAuthUser";
+import { act } from "react";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
   const [activeChat, setActiveChat] = useState(false);
   const [chat, setChat] = useState("");
+  const [chatImage, setChatImage] = useState([]);
   const { chats } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
   const scrollChat = useRef();
@@ -30,12 +32,13 @@ const MessengerHome = () => {
 
   const handleMessageSend = (e) => {
     if (e.key === "Enter") {
-      dispatch(
-        createChat({
-          chat: chat,
-          receiverId: activeChat?._id,
-        })
-      )
+      const form_data = new FormData();
+
+      form_data.append("chat", chat);
+      form_data.append("receiverId", activeChat._id);
+      form_data.append("chat-image", chatImage);
+
+      dispatch(createChat(form_data))
         .then((result) => {
           console.log("Chat message sent successfully:", result);
         })
@@ -44,6 +47,10 @@ const MessengerHome = () => {
         });
       setChat("");
     }
+  };
+
+  const handleChatPhoto = (e) => {
+    setChatImage(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -145,7 +152,15 @@ const MessengerHome = () => {
                 <div className="chat-body-icons">
                   <ul>
                     <li>
-                      <LuImagePlus />
+                      <label>
+                        <LuImagePlus />
+                        <input
+                          type="file"
+                          id="chat-image"
+                          style={{ display: "none" }}
+                          onChange={handleChatPhoto}
+                        />
+                      </label>
                     </li>
 
                     <li>

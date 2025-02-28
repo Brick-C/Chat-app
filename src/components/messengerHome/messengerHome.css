@@ -236,6 +236,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 4px 14px;
+      margin-bottom: 1%;
       -webkit-box-shadow: 0px 6px 15px -2px rgba(231, 228, 228, 0.34);
       -moz-box-shadow: 0px 6px 15px -2px rgba(235, 233, 233, 0.34);
       box-shadow: 0px 6px 15px -2px rgba(223, 222, 222, 0.3);
@@ -287,7 +288,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 4.4%;
+        margin-top: 2.2%;
         img {
           width: 52px;
           height: 55px;
@@ -306,7 +307,7 @@
         flex-direction: column;
         padding: 0 11px;
 
-        height: 66vh;
+        height: 66.8vh;
 
         .my-msg {
           display: flex;
@@ -320,7 +321,7 @@
             font-family: "Zain";
             font-size: 19.1px;
             border-radius: 5px;
-            max-width: 32%;
+            max-width: 35%;
           }
 
           .msg-photo {
