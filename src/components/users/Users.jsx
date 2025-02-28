@@ -57,6 +57,7 @@ const Users = ({ setActiveChat, activeChat }) => {
               key={index}
               onClick={() => setActiveChat(item)}
             >
+              <div className="user-status active"></div>
               <Avatar src={item.photo} name={item.name} />
 
               <div className="user-details">

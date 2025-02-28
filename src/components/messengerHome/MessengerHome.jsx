@@ -47,7 +47,13 @@ const MessengerHome = () => {
   };
 
   useEffect(() => {
-    scrollChat.current?.scrollIntoView({ behavior: "smooth" });
+    if (chats && chats.length > 0 && scrollChat.current) {
+      const messageList = scrollChat.current;
+      const lastMessage = messageList.lastElementChild;
+      if (lastMessage) {
+        lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    }
   }, [chats]);
 
   useEffect(() => {
@@ -94,7 +100,7 @@ const MessengerHome = () => {
                   <img src={activeChat.photo} alt="" />
                   <span id="chat-name">{activeChat.name}</span>
                 </div>
-                <div className="chat-msg-list">
+                <div className="chat-msg-list" ref={scrollChat}>
                   {chats && chats.length > 0
                     ? chats.map((item, index) => {
                         return (
@@ -103,7 +109,7 @@ const MessengerHome = () => {
                               <React.Fragment
                                 key={item._id || `chat-item-${index}`}
                               >
-                                <div className="my-msg" ref={scrollChat}>
+                                <div className="my-msg">
                                   <div className="msg-text">
                                     {item.message.text}
                                   </div>
