@@ -18,7 +18,7 @@ import {
   getUserToUserChat,
 } from "../../features/chat/chatApiSlice";
 import useAuthUser from "../../hooks/useAuthUser";
-import { act } from "react";
+import { io } from "socket.io-client";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
@@ -29,6 +29,7 @@ const MessengerHome = () => {
   const dispatch = useDispatch();
   const scrollChat = useRef();
   const { user } = useAuthUser();
+  const socket = useRef();
 
   const handleMessageSend = (e) => {
     if (e.key === "Enter") {
@@ -74,6 +75,12 @@ const MessengerHome = () => {
       );
     }
   }, [activeChat, dispatch]);
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:9000/");
+
+    socket.current.emit("setActiveUser", user);
+  }, []);
 
   return (
     <>
