@@ -24,6 +24,7 @@ const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
   const [activeChat, setActiveChat] = useState(false);
   const [chat, setChat] = useState("");
+  const [activeUser, setActiveUser] = useState([]);
   const [chatImage, setChatImage] = useState([]);
   const { chats } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
@@ -79,13 +80,23 @@ const MessengerHome = () => {
   useEffect(() => {
     socket.current = io("ws://localhost:9000/");
 
+    //send logim user as active
     socket.current.emit("setActiveUser", user);
+
+    //get active users data
+    socket.current.on("getActiveUser", (data) => {
+      setActiveUser(data);
+    });
   }, []);
 
   return (
     <>
       <div className="chat-container">
-        <Users setActiveChat={setActiveChat} activeChat={activeChat} />
+        <Users
+          setActiveChat={setActiveChat}
+          activeChat={activeChat}
+          activeUser={activeUser}
+        />
         <div className="chat-body">
           {activeChat ? (
             <>
