@@ -19,6 +19,7 @@ import {
 } from "../../features/chat/chatApiSlice";
 import useAuthUser from "../../hooks/useAuthUser";
 import { io } from "socket.io-client";
+import moment from "moment";
 
 const MessengerHome = () => {
   const { isOpenEmoji, toggleMenu } = useDropdownPopupControl();
@@ -159,7 +160,9 @@ const MessengerHome = () => {
                             )}
 
                             <div className="msg-time">
-                              <span>9:30 PM</span>
+                              <span>
+                                {moment(item?.createdAt).startOf("").fromNow()}
+                              </span>
                             </div>
                           </>
                         );
